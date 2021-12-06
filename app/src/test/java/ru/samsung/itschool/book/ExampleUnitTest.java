@@ -15,13 +15,6 @@ import org.robolectric.RobolectricTestRunner;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(RobolectricTestRunner.class)
 public class ExampleUnitTest {
     public static final String ZERO = "0";
@@ -36,10 +29,10 @@ public class ExampleUnitTest {
     static int salt;
 
     @BeforeClass
-    public static void report(){
-        salt=new Random(System.currentTimeMillis()).nextInt(999);
-        sb=new StringBuffer();
-        sb.append(String.format("%03d",salt));
+    public static void report() {
+        salt = new Random(System.currentTimeMillis()).nextInt(999);
+        sb = new StringBuffer();
+        sb.append(String.format("%03d", salt));
     }
 
     @Before
@@ -49,31 +42,30 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void testButton1() throws Exception {
+    public void testButton1() {
         try {
-            MainActivity activity = Robolectric.buildActivity(MainActivity.class)
-                    .create().get();
-            Button view = (Button) activity.findViewById(R.id.run);
+            Button view = activity.findViewById(R.id.run);
             Assert.assertNotNull(view);
-            EditText et_a = (EditText) activity.findViewById(R.id.a);
+            EditText et_a = activity.findViewById(R.id.a);
             Assert.assertNotNull(et_a);
-            EditText et_b = (EditText) activity.findViewById(R.id.b);
+            EditText et_b = activity.findViewById(R.id.b);
             Assert.assertNotNull(et_b);
-            EditText et_c = (EditText) activity.findViewById(R.id.c);
+            EditText et_c = activity.findViewById(R.id.c);
             Assert.assertNotNull(et_c);
-            TextView tv = (TextView) activity.findViewById(R.id.res);
+            TextView tv = activity.findViewById(R.id.res);
             Assert.assertNotNull(tv);
             et_a.setText(ZERO);
             et_b.setText(ZERO);
             et_c.setText(ZERO);
             view.performClick();
-            org.junit.Assert.assertEquals(tv.getText().toString(), ANY);
+            Assert.assertEquals(tv.getText().toString(), ANY);
             sb.append(",OK");
-        } catch (Throwable t){}
+        } catch (Throwable throwable) {
+        }
     }
 
     @Test
-    public void testButton2() throws Exception {
+    public void testButton2() {
         try {
             MainActivity activity = Robolectric.buildActivity(MainActivity.class)
                     .create().get();
@@ -91,22 +83,23 @@ public class ExampleUnitTest {
             et_b.setText(TWO_);
             et_c.setText(ZERO);
             view.performClick();
-            String s[]=tv.getText().toString().trim().replaceAll(" +", " ").split(" ");
-            double r1=Double.valueOf(s[0]);
-            double r2=Double.valueOf(s[1]);
-            if(r1>r2) {
-                org.junit.Assert.assertEquals(2, r1, 0.001);
-                org.junit.Assert.assertEquals(0, r2, 0.001);
+            String s[] = tv.getText().toString().trim().replaceAll(" +", " ").split(" ");
+            double r1 = Double.valueOf(s[0]);
+            double r2 = Double.valueOf(s[1]);
+            if (r1 > r2) {
+                Assert.assertEquals(2, r1, 0.001);
+                Assert.assertEquals(0, r2, 0.001);
             } else {
-                org.junit.Assert.assertEquals(0, r1, 0.001);
-                org.junit.Assert.assertEquals(2, r2, 0.001);
+                Assert.assertEquals(0, r1, 0.001);
+                Assert.assertEquals(2, r2, 0.001);
             }
             sb.append(",OK");
-        } catch (Throwable t){}
+        } catch (Throwable throwable) {
+        }
     }
 
     @Test
-    public void testButton3() throws Exception {
+    public void testButton3() {
         try {
             MainActivity activity = Robolectric.buildActivity(MainActivity.class)
                     .create().get();
@@ -124,15 +117,15 @@ public class ExampleUnitTest {
             et_b.setText(TWO_);
             et_c.setText(TWO_);
             view.performClick();
-            org.junit.Assert.assertEquals(tv.getText().toString(), NONE);
+            Assert.assertEquals(tv.getText().toString(), NONE);
             sb.append(",OK");
-        }catch(Throwable t){}
+        } catch (Throwable throwable) {
+        }
     }
 
     @AfterClass
-    public static void printResult(){
-        System.err.println("\n\n=============================\nВАШ РЕЗУЛЬТАТ: "+sb.toString().hashCode()+""+salt+"\n=============================\n");
+    public static void printResult() {
+        System.err.println("\n\n=============================\nВАШ РЕЗУЛЬТАТ: " + sb.toString().hashCode() + "" + salt + "\n=============================\n");
 
     }
-
 }
