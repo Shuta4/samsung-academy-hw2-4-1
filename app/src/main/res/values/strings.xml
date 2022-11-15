@@ -5,4 +5,7 @@
     <string name="b">Введите B</string>
     <string name="c">Введите C</string>
     <string name="calculate">Вычислить</string>
+    <string name="no_answers">none</string>
+    <string name="any_x">any</string>
+    <string name="enter_numbers">Введите числа A, B и C</string>
 </resources>
